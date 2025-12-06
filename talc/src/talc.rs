@@ -131,18 +131,21 @@ unsafe fn bin_of_size(size: usize) -> usize {
     const WORD_BIN_LIMIT: usize = match WORD_SIZE {
         8 => 256,
         4 => 64,
+        2 => 16,
         _ => panic!("{}", ERRMSG),
     };
     /// up to what size beyond that do we use a bin for every multiple of a doubleword
     const DOUBLE_BIN_LIMIT: usize = match WORD_SIZE {
         8 => 512,
         4 => 128,
+        2 => 32,
         _ => panic!("{}", ERRMSG),
     };
     /// how many buckets are linearly spaced among each power of two magnitude (how many divisions)
     const DIVS_PER_POW2: usize = match WORD_SIZE {
         8 => 4,
         4 => 2,
+        2 => 1,
         _ => panic!("{}", ERRMSG),
     };
     /// how many bits are used to determine the division
